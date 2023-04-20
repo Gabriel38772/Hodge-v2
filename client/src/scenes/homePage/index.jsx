@@ -1,3 +1,6 @@
+
+// Importing components and hooks
+
 import {Box, useMediaQuery} from '@mui/material';
 import {useSelector} from 'react-redux';
 import Navbar from 'scenes/navbar';

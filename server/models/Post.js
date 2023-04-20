@@ -1,3 +1,5 @@
+/* Importing mongo library */ 
+
 import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema(
@@ -45,5 +47,8 @@ const postSchema = mongoose.Schema(
 );
 
 const Post = mongoose.model('Post', postSchema);
+
+// Exporting the Post model to be used in other modules
+
 
 export default Post;

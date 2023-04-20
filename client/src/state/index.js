@@ -1,11 +1,16 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+// Define the initial state of the authentication module
+
 const initialState = {
   mode: 'light',
   user: null,
   token: null,
   posts: [],
 };
+
+//  Authentication module
+
 
 export const authSlice = createSlice({
   name: 'auth',
