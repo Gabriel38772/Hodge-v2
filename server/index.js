@@ -54,6 +54,7 @@ app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/saved', savedRoutes);
 /* MONGOOSE SETUP */
+mongoose.set('strictQuery', false);
 const PORT = process.env.PORT || 3001;
 mongoose
   .connect(process.env.MONGO_URL, {
