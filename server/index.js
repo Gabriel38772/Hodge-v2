@@ -8,7 +8,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import authRoutes from './routes/auth.js';
+import authRoutes from './routes/auth.js'; //Fil (auth) i mapp kallad route
 import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
 import savedRoutes from './routes/saved.js';
@@ -44,15 +44,33 @@ const storage = multer.diskStorage({
 });
 const upload = multer({storage});
 
-/* ROUTES WITH FILES */
+
+
+
+
+
+/* ROUTES WITH FILES 
+      definierar hur clientens requests hanteras av applikationen. 
+      Specifikt requests som hanterar filer.
+      */
+
+      /*
+      post säger att du vill skapa en ny resurs
+      Auth/register är den specifika vägen (route) som ska tas */
 app.post('/auth/register', upload.single('picture'), register);
 app.post('/posts', verifyToken, upload.single('picture'), createPost);
 
+
+
+
+
+
 /* ROUTES */
-app.use('/auth', authRoutes);
+app.use('/auth', authRoutes); //??
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/saved', savedRoutes);
+
 /* MONGOOSE SETUP */
 mongoose.set('strictQuery', false);
 const PORT = process.env.PORT || 6001;
