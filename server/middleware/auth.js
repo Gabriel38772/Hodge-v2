@@ -1,7 +1,11 @@
+//Denna fil låter appen authorizera användaren
+
 import jwt from 'jsonwebtoken';
 
 export const verifyToken = async (req, res, next) => {
   try {
+
+    //Kopplar mellan front och backend??
     let token = req.header('Authorization');
 
     if (!token) {
@@ -15,7 +19,8 @@ export const verifyToken = async (req, res, next) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     req.user = verified;
     next();
-  } catch (err) {
+
+  } catch (err) { //Om något inte fungerar
     res.status(500).json({error: err.message});
   }
 };
