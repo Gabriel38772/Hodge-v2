@@ -18,6 +18,9 @@ import {
 import storage from 'redux-persist/lib/storage';
 import {PersistGate} from 'redux-persist/integration/react';
 
+// Configuration object for redux-persist
+
+
 const persistConfig = {key: 'root', storage, version: 1};
 const persistedReducer = persistReducer(persistConfig, authReducer);
 const store = configureStore({
@@ -29,6 +32,8 @@ const store = configureStore({
       },
     }),
 });
+
+// Create a root element for rendering the app
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

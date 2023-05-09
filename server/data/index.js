@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+// Generate an array of unique user IDs
+
 const userIds = [
   new mongoose.Types.ObjectId(),
   new mongoose.Types.ObjectId(),
@@ -10,6 +12,9 @@ const userIds = [
   new mongoose.Types.ObjectId(),
   new mongoose.Types.ObjectId(),
 ];
+
+// Export an array of user objects with various properties
+
 
 export const users = [
   {
@@ -174,6 +179,7 @@ export const posts = [
       'Another really long random description. This one is longer than the previous one.',
     picturePath: 'post2.jpeg',
     userPicturePath: 'p6.jpeg',
+        // Likes stored as a Map object with user IDs as keys and a boolean value `true` as a value
     likes: new Map([
       [userIds[7], true],
       [userIds[4], true],

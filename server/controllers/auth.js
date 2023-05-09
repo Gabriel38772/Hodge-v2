@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
 // register user
+//This functions registers the user and also hashes the password
 export const register = async (req, res) => {
   try {
     const {
