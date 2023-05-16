@@ -11,8 +11,8 @@ import {themeSettings} from './theme';
 import SavedPage from 'scenes/savedPage';
 
 function App() {
-  const mode = useSelector((state) => state.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const mode = useSelector((state) => state.mode); //Tar state info från state/index.js
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]); //skapar constant tema som låter oss byta mellan ljus/mörkt läge.
   const isAuth = Boolean(useSelector((state) => state.token));
 
   return (
@@ -39,7 +39,7 @@ function App() {
               element={isAuth ? <HomePage /> : <Navigate to='/' />}
             />
             <Route
-            path='/projects/userId'
+            path='/projects/:userId'
             element={isAuth ? <ProjectPage /> : <Navigate to='/' />}
             />
           </Routes>
