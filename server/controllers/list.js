@@ -1,7 +1,7 @@
-import Card from '../models/card';
-import list from '../models/list';
-import List from '../models/list';
-const { throwError } = require("../utils/helpers"); //ta bort? 
+import Card from '../models/card.js';
+import List from '../models/list.js';
+
+//const { throwError } = require("../utils/helpers"); //ta bort? 
 
 export const createNewList = async (req, res, next) => {
     const boardId = req.body.boardId;
@@ -33,7 +33,7 @@ export const updateList = async (req, res, next) => {
         const result = await list.save();
         res.status(200).json({
             message: "Success",
-            data: { id: result._id.toString(), title: result.title };
+            data: { id: result._id.toString(), title: result.title }
         });
     }   catch (err) {
         next(err);

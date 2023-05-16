@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import Board from '../models/board'
-import { throwError } from '../utils/helpers' //ta bort?
+import Board from '../models/board.js'
+//import { throwError } from '../utils/helpers.js' //ta bort?
 
 
 //Laddar boards med ett visst userId

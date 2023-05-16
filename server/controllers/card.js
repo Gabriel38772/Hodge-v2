@@ -1,5 +1,5 @@
-import Card from '../models/card';
-import { throwError } from '../utils/helpers'; //ta bort?
+import Card from '../models/card.js';
+//import { throwError } from '../utils/helpers.js'; //ta bort?
 
 export const createNewCard = async (req, res, next) => {
     const boardId = req.body.boardId;

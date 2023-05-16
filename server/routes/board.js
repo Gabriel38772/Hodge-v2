@@ -1,5 +1,5 @@
 import express from 'express';
-import boardController from '..controllers/board';
+import * as boardController from '../controllers/board.js';
 import {verifyToken} from '../middleware/auth.js';
 
 const router = express.Router();

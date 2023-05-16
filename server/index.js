@@ -14,9 +14,9 @@ import postRoutes from './routes/posts.js';
 import savedRoutes from './routes/saved.js';
 
 //project page
-import boardRoutes from '.routes/board';
-import listRoutes from '.routes/list';
-import cardRoutes from '.routes/card';
+import boardRoutes from './routes/board.js';
+import listRoutes from './routes/list.js';
+import cardRoutes from './routes/card.js';
 
 
 import {register} from './controllers/auth.js';

@@ -34,4 +34,4 @@ const cardSchema = new mongoose.Schema({
 
 
 const Card = mongoose.model('Card', cardSchema); //Gör schemat till en model vilket är formen som kan utföras querys osv.
-export default card;
+export default Card;

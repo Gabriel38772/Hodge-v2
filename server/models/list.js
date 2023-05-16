@@ -14,4 +14,4 @@ const listSchema = new mongoose.Schema({
 
 
 const List = mongoose.model('List', listSchema); //Gör schemat till en model vilket är formen som kan utföras querys osv.
-export default list;
+export default List;
