@@ -39,8 +39,8 @@ function App() {
               element={isAuth ? <HomePage /> : <Navigate to='/' />}
             />
             <Route
-            path='/projects/:userId'
-            element={isAuth ? <ProjectPage /> : <Navigate to='/' />}
+              path='/projects/:userId'
+              element={isAuth ? <ProjectPage /> : <Navigate to='/' />}
             />
           </Routes>
         </ThemeProvider>
