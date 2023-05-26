@@ -1,10 +1,10 @@
 import {Box, Typography, useTheme, useMediaQuery} from '@mui/material';
-import Form from './Form';
+import Form from './form';
 import Navbar from 'scenes/navbar';
 
 const ProjectPage = () => {
    const theme = useTheme ();
-   const isNonMobileScreens = useMediaQuery('(min-width:100px)');
+   const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
 
    return(
 		<Box>

@@ -12,6 +12,7 @@ import authRoutes from './routes/auth.js'; //Fil (auth) i mapp kallad route
 import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
 import savedRoutes from './routes/saved.js';
+import projectRoutes from './routes/projects.js';
 
 //project page
 import boardRoutes from './routes/board.js';
@@ -21,9 +22,10 @@ import cardRoutes from './routes/card.js';
 
 import {register} from './controllers/auth.js';
 import {createPost} from './controllers/posts.js';
+import {createProject} from './controllers/projects.js'
 import {verifyToken} from './middleware/auth.js';
-import User from './models/User.js';
-import Post from './models/Post.js';
+import User from './models/user.js';
+import Post from './models/post.js';
 import {users, posts} from './data/index.js';
 
 /* CONFIGURATIONS */
@@ -51,11 +53,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({storage});
 
-
-
-
-
-
 /* ROUTES WITH FILES 
       definierar hur clientens requests hanteras av applikationen. 
       Specifikt requests som hanterar filer.
@@ -66,17 +63,14 @@ const upload = multer({storage});
       Auth/register är den specifika vägen (route) som ska tas */
 app.post('/auth/register', upload.single('picture'), register);
 app.post('/posts', verifyToken, upload.single('picture'), createPost);
-
-
-
-
-
+app.post('/projects', verifyToken, upload.single('picture'), createProject);
 
 /* ROUTES */
 app.use('/auth', authRoutes); //??
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/saved', savedRoutes);
+app.use('/projects', projectRoutes)
 
 /* MONGOOSE SETUP */
 mongoose.set('strictQuery', false);

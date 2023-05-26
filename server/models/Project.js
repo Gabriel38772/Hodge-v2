@@ -25,10 +25,14 @@ const projectSchema = mongoose.Schema(
     createdAt: {
       type: Date,
       default: Date.now(),
-    }},
+    },
+    saved: {
+      type: Map,
+      of: Boolean,
+    }
+  },
     {timestamps: true},
 );
 
 const Project = mongoose.model('Project', projectSchema);
-
 export default Project;
