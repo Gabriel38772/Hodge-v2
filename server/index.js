@@ -70,7 +70,8 @@ app.use('/auth', authRoutes); //??
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/saved', savedRoutes);
-app.use('/projects', projectRoutes)
+app.use('/projects', projectRoutes);
+app.use('/createProject', projectRoutes);
 
 /* MONGOOSE SETUP */
 mongoose.set('strictQuery', false);

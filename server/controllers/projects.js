@@ -1,5 +1,5 @@
 import Project from '../models/project.js';
-import User from '../models/Users.js'
+import User from '../models/user.js'
 
 /*Skapar projekt i mongoose */
 export const createProject = async(req, res) => {
@@ -7,7 +7,7 @@ export const createProject = async(req, res) => {
 		const {userId, title, info, category, picturePath} = req.body;
 		const user = await User.findById(userId);
 		const newProject = new Project({
-			userId,
+			user,
 			title,
 			info,
 			category,

@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   token: null,
   posts: [],
+  projects: []
 };
 
 export const authSlice = createSlice({
@@ -48,6 +49,13 @@ export const authSlice = createSlice({
       });
       state.posts = updatedPosts;
     },
+    setProject: (state,action) => {
+      const updatedProjects = state.projects.map((project) => {
+        if (project._id === action.payload.project._id) return action.payload.project;
+        return project;
+      });
+      state.project = updatedProjects
+    }
   },
 });
 
