@@ -49,6 +49,13 @@ export const authSlice = createSlice({
       });
       state.posts = updatedPosts;
     },
+    setProjects: (state, action) => {
+      state.projects = action.payload.projects.slice(0)
+        .reverse()
+        .map((element) => {
+          return element;
+        });
+    },
     setProject: (state,action) => {
       const updatedProjects = state.projects.map((project) => {
         if (project._id === action.payload.project._id) return action.payload.project;
