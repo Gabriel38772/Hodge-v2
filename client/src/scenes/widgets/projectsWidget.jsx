@@ -8,7 +8,7 @@ const ProjectsWidget = ({userId, isProfile = false}) => {
   const projects = useSelector((state) => state.projects);
   const token = useSelector((state) => state.token);
 
-  /*
+
   const getProjects = async () => {
     const response = await fetch('http://localhost:3001/projects', {
       method: 'GET',
@@ -17,7 +17,6 @@ const ProjectsWidget = ({userId, isProfile = false}) => {
     const data = await response.json();
     dispatch(setProjects({projects: data}));
   };
-*/
   /*
   const getUserPosts = async () => {
     const response = await fetch(

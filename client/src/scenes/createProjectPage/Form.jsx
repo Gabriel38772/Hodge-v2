@@ -9,18 +9,19 @@ import { EditOutlined } from '@mui/icons-material';
 import { Formik } from 'formik';
 import * as yup from 'yup'; //Form validation
 //import { useNavigate } from 'react-router-dom';
-//import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Dropzone from 'react-dropzone'; //Låter användare "drop" en fil för att kunna ladda upp den på sidan
 import FlexBetween from '../../components/FlexBetween';
 import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
+import {useState} from 'react';
+import {setProjects} from 'state';
 
 
 
 const projectSchema = yup.object().shape({
-	userId: yup.string().required('required'),
 	title: yup.string().required('required'),
-	info: yup.string(),
+	info: yup.string().required(''),
 	category: yup.string().required('required'),
 	picture: yup.string()
 	});
@@ -32,14 +33,17 @@ const initialValuesCreateProject = {
 	picture: ""
 };
 
-
-
 const Form = () => {
 	const{ palette } = useTheme(); //Kopplar till temat
-	//const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const navigate = useNavigate(); //Låter en navigera mellan sidor.
 	const isNonMobile = useMediaQuery("(min-width: 600px)");
 	const user = useSelector((state) => state.user);
+	const [project, setProject] = useState('');
+	const token = useSelector((state) => state.token);
+	const [ setImage] = useState(null);
+
+
 
 	const projectCreated = async (values, onSubmitProps) => {
 		const formData = new FormData(); //Låter en skicka bild som del av formulärinfon
@@ -49,14 +53,15 @@ const Form = () => {
 		formData.append('picturePath', values.picture.name);
 		
 		const projectCreatedResponse = await fetch(
-			"http://localhost:3001/projects", //glöm inte ändra!!
-			{
-				method: "POST",
-				body: formData
-			}
-		);
-		const projectCreated = await projectCreatedResponse.json();
-		//onSubmitProps.resetForm(); //Återställer till tomt formulär
+			"http://localhost:3001/projects", { //glöm inte ändra!!
+			method: 'POST',
+      headers: {Authorization: `Bearer ${token}`},
+      body: formData,
+    });
+		const projects = await projectCreatedResponse.json();
+			dispatch(setProjects({projects}));
+			setImage(null);
+			setProject('');
 
 		if (projectCreated) {
 			navigate(`/projects/${user._id}`);
