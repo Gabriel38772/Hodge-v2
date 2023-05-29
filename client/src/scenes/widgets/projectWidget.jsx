@@ -10,7 +10,6 @@ import {Box, Divider, IconButton, Typography, useTheme, Button, TextField} from 
 import FlexBetween from 'components/FlexBetween';
 //import Friend from 'components/Friend';
 import WidgetWrapper from 'components/WidgetWrapper';
-//import PostCategorizer from './PostCategorizer';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {setPost} from 'state';
@@ -42,7 +41,7 @@ const ProjectWidget = ({
 	//const [loadcomments, setLoadComments] = useState([]);
  
 	useEffect(() => {
-    axios.get(`http://localhost:3001/projects/${projectId}/get/comment`, {
+    axios.get(`http://localhost:3001/projects/${projectId}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -59,15 +58,7 @@ const ProjectWidget = ({
       <FlexBetween mt='0.25rem'>
     
       </FlexBetween>
-
-
       <Box mt='0.5rem'>
-        {ProjectCategory && <ProjectCategorizer postId={postId} likes={likes} picturePath={picturePath}
-                                          userPicturePath={userPicturePath}
-                                          name={name}
-                                          description={description}
-                                          location={location}
-                                          comments={comments} />}
       </Box>
     </WidgetWrapper>
 		

@@ -3,17 +3,30 @@ import User from '../models/user.js'
 
 /*Skapar projekt i mongoose */
 export const createProject = async(req, res) => {
-   try {
-		const {userId, title, info, category, picturePath} = req.body;
-		const user = await User.findById(userId);
-		const newProject = new Project({
+	console.log(req.body)
+  try {
+		const projects = new Project(rec.body)
+		//let result = await projects.save();
+
+
+		//const {title, info, category, picturePath,} = req.body;
+		//const user = await User.findById(userId);
+		/*const newProject = new Project({
 			projectOwnerId: user.userId,
 			title,
 			info,
 			category,
 			picturePath,
 			members: []
-		});
+		});*/
+		projects.save(err=>{
+			if(err){
+				res.send(err)
+			}else{
+				res.send({message:"succesful"})
+			}
+		})
+			
 
    	await newProject.save(); //Sparar projektet
 		const project = await Project.find(); //Hämtar alla projects till front end för att flödet ska uppdateras

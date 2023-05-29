@@ -14,24 +14,26 @@ import postRoutes from './routes/posts.js';
 import savedRoutes from './routes/saved.js';
 import projectRoutes from './routes/projects.js';
 
-//project page
+/*project page
 import boardRoutes from './routes/board.js';
 import listRoutes from './routes/list.js';
-import cardRoutes from './routes/card.js';
+import cardRoutes from './routes/card.js'; */
 
 
 import {register} from './controllers/auth.js';
 import {createPost} from './controllers/posts.js';
 import {createProject} from './controllers/projects.js'
 import {verifyToken} from './middleware/auth.js';
+/*
 import User from './models/user.js';
 import Post from './models/post.js';
-import {users, posts} from './data/index.js';
+import {users, posts} from './data/index.js'; */
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config();
+
 const app = express();
 app.use(express.json());
 app.use(helmet());
@@ -63,14 +65,14 @@ const upload = multer({storage});
       Auth/register är den specifika vägen (route) som ska tas */
 app.post('/auth/register', upload.single('picture'), register);
 app.post('/posts', verifyToken, upload.single('picture'), createPost);
-app.post('/projects', verifyToken, upload.single('picture'), createProject);
+app.post('/project', verifyToken, upload.single('picture'), createProject);
 
 /* ROUTES */
 app.use('/auth', authRoutes); //??
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/saved', savedRoutes);
-app.use('/projects', projectRoutes);
+//app.use('/projects', projectRoutes);
 
 /* MONGOOSE SETUP */
 mongoose.set('strictQuery', false);

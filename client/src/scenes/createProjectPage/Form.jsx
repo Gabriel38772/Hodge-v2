@@ -39,13 +39,13 @@ const Form = () => {
 	const navigate = useNavigate(); //Låter en navigera mellan sidor.
 	const isNonMobile = useMediaQuery("(min-width: 600px)");
 	const user = useSelector((state) => state.user);
-	const [project, setProject] = useState('');
+	const [setProject] = useState('');
 	const token = useSelector((state) => state.token);
 	const [ setImage] = useState(null);
 
 
 
-	const projectCreated = async (values, onSubmitProps) => {
+	const projectCreated = async (values) => {
 		const formData = new FormData(); //Låter en skicka bild som del av formulärinfon
 		for (let value in values){
 			formData.append(value, values[value])
@@ -53,7 +53,7 @@ const Form = () => {
 		formData.append('picturePath', values.picture.name);
 		
 		const projectCreatedResponse = await fetch(
-			"http://localhost:3001/projects", { //glöm inte ändra!!
+			"http://localhost:3001/project", { //glöm inte ändra!!
 			method: 'POST',
       headers: {Authorization: `Bearer ${token}`},
       body: formData,
