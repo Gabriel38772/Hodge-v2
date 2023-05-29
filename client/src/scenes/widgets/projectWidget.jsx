@@ -1,4 +1,3 @@
-/*
 import {
 	ChatBubbleOutlineOutlined,
 	FavoriteBorderOutlined,
@@ -21,16 +20,17 @@ import axios from 'axios';
 
 const ProjectWidget = ({
 						projectId,
-						projectOwner,
-						name,
-						description,
+						projectOwnerId,
+						title,
+						info,
+						category,
 						picturePath
 					}) => {
 	//const [isComments, setIsComments] = useState(false);
 	//const [newcomment, setNewComment] = useState('');
 	//const [PostCategory, setPostCategory] = useState(false);
 	//const dispatch = useDispatch();
-	//const token = useSelector((state) => state.token);
+	const token = useSelector((state) => state.token);
 	const loggedInUserId = useSelector((state) => state.user._id);
 	//const isLiked = Boolean(likes[loggedInUserId]);
 	//const likeCount = Object.keys(likes).length;
@@ -41,13 +41,35 @@ const ProjectWidget = ({
  
 	//const [loadcomments, setLoadComments] = useState([]);
  
+	useEffect(() => {
+    axios.get(`http://localhost:3001/projects/${projectId}/get/comment`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      
+      .catch(error => {
+        console.error(error);
+      });
+  }, [projectId, token]);
 
 	return (
-		<WidgetWrapper>
-			<Box mt='0.5rem'>
-				
-			</Box>
-		</WidgetWrapper>
+		<WidgetWrapper m='2rem 0'>
+      <FlexBetween mt='0.25rem'>
+    
+      </FlexBetween>
+
+
+      <Box mt='0.5rem'>
+        {ProjectCategory && <ProjectCategorizer postId={postId} likes={likes} picturePath={picturePath}
+                                          userPicturePath={userPicturePath}
+                                          name={name}
+                                          description={description}
+                                          location={location}
+                                          comments={comments} />}
+      </Box>
+    </WidgetWrapper>
 		
 
 	);
@@ -55,5 +77,3 @@ const ProjectWidget = ({
 		
  
 export default ProjectWidget;
-
-*/

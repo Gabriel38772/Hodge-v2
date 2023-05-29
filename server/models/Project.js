@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const projectSchema = mongoose.Schema(
   {
-    userId: {
+    projectOwnerId: {
       type: String,
       required: true,
     },
@@ -18,6 +18,7 @@ const projectSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+
     picturePath: {
       type: String,
       default: '',
@@ -26,10 +27,12 @@ const projectSchema = mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
-    saved: {
-      type: Map,
-      of: Boolean,
-    }
+    members: [{
+      userId: {
+        type: String,
+        required: true
+      }
+    }]
   },
     {timestamps: true},
 );

@@ -7,13 +7,12 @@ export const createProject = async(req, res) => {
 		const {userId, title, info, category, picturePath} = req.body;
 		const user = await User.findById(userId);
 		const newProject = new Project({
-			user,
+			projectOwnerId: user.userId,
 			title,
 			info,
 			category,
 			picturePath,
-			createdAt,
-			saved: {}
+			members: []
 		});
 
    	await newProject.save(); //Sparar projektet
@@ -26,7 +25,7 @@ export const createProject = async(req, res) => {
 };
 
 /* READ */
-export const getFeedProjects = async (req, res) => {
+export const getFeedProjects = async (res) => {
 	try {
 	  const project = await Project.find();
 	  res.status(200).json(project);

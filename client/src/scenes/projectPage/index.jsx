@@ -1,15 +1,18 @@
 import { Box, Button, Typography, Grid, useMediaQuery, MenuItem, Select, Paper } from '@mui/material';
+import {useParams} from 'react-router-dom';
 import Navbar from 'scenes/navbar';
 import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import { useState} from 'react';
-import ProjectsWidget from 'scenes/widgets/projectWidget';
+import ProjectsWidget from 'scenes/widgets/projectsWidget';
 
 
 
 
 const ProjectPage = () => {
   const [myProjects, setMyProjects] = useState([]);
+  const {userId} = useParams();
+
   const navigate = useNavigate();
    
   const user = useSelector((state) => state.user);
@@ -97,7 +100,7 @@ const ProjectPage = () => {
 
 
       
-         <Button onClick={()=>navigate(`/createProject/${user._id}`)}>
+         <Button onClick={()=>navigate(`/projects/new/${user._id}`)}>
 				Skapa projekt
 			</Button>
       

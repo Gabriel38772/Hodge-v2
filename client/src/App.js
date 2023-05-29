@@ -44,8 +44,8 @@ function App() {
               element={isAuth ? <ProjectPage /> : <Navigate to='/' />}
             />
             <Route
-              path='/createproject/:userId'
-              element={isAuth ? <CreateProjectPage /> : <Navigate to='/fuck' />}
+              path='/projects/new/:userId'
+              element={isAuth ? <CreateProjectPage /> : <Navigate to='/' />}
             />
           </Routes>
         </ThemeProvider>
