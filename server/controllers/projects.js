@@ -1,17 +1,46 @@
 import Project from '../models/project.js';
 import User from '../models/user.js'
 
-/*Skapar projekt i mongoose */
+
+export const createProject = async (req, res) => {
+  console.log(req.body);
+  try {
+    const project = new Project(req.body);
+    await project.save();
+
+    const projects = await Project.find();
+    res.status(201).json(projects);
+  } catch (err) {
+    res.status(409).json({ message: err.message });
+  }
+
+};
+// let result = await projects.save();
+
+
+
+/*Skapar projekt i mongoose 
 export const createProject = async(req, res) => {
 	console.log(req.body)
-  try {
-		const projects = new Project(rec.body)
-		//let result = await projects.save();
+  const user = await User.findById();
+	const projectOwnerId = req.body.userId;
+	const newProject = new Project({
+		title,
+		info,
+		category,
+		picturePath,
+		members: []
+	});
+	await newProject.save();
+		
 
-
+		
 		//const {title, info, category, picturePath,} = req.body;
 		//const user = await User.findById(userId);
-		/*const newProject = new Project({
+		/*
+		const newProject = new Project(req.body)
+		await newProject.save(); //Sparar projektet
+		const newProject = new Project({
 			projectOwnerId: user.userId,
 			title,
 			info,
@@ -19,6 +48,8 @@ export const createProject = async(req, res) => {
 			picturePath,
 			members: []
 		});*/
+
+		/*
 		projects.save(err=>{
 			if(err){
 				res.send(err)
@@ -28,16 +59,27 @@ export const createProject = async(req, res) => {
 		})
 			
 
-   	await newProject.save(); //Sparar projektet
+   	
+
 		const project = await Project.find(); //Hämtar alla projects till front end för att flödet ska uppdateras
 		res.status(201).json(project);
 
   	} catch (err) {
    	res.status(409).json({message: err.message});
 	}
-};
+};*/
 
-/* READ */
+
+
+
+
+
+
+
+
+
+
+/* READ 
 export const getFeedProjects = async (res) => {
 	try {
 	  const project = await Project.find();
@@ -46,7 +88,8 @@ export const getFeedProjects = async (res) => {
 	  res.status(404).json({message: err.message});
 	}
  };
- 
+
+
 export const getUserProjects = async (req, res) => {
 	try {
 	  const {userId} = req.params;
@@ -68,7 +111,7 @@ export const getSavedProjects = async (req, res) => {
  };
  
  
- /* UPDATE */
+ /* UPDATE 
 export const saveProject = async (req, res) => {
 	try {
 	  const {id} = req.params;
@@ -91,5 +134,4 @@ export const saveProject = async (req, res) => {
 	  res.status(200).json(updatedProject);
 	} catch (err) {
 	  res.status(404).json({message: err.message});
-	}
-};
+	}*/

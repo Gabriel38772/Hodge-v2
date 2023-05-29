@@ -12,7 +12,7 @@ import authRoutes from './routes/auth.js'; //Fil (auth) i mapp kallad route
 import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
 import savedRoutes from './routes/saved.js';
-import projectRoutes from './routes/projects.js';
+//import projectRoutes from './routes/projects.js';
 
 /*project page
 import boardRoutes from './routes/board.js';
@@ -26,8 +26,9 @@ import {createProject} from './controllers/projects.js'
 import {verifyToken} from './middleware/auth.js';
 /*
 import User from './models/user.js';
-import Post from './models/post.js';
-import {users, posts} from './data/index.js'; */
+import Post from './models/post.js'; 
+import Project from './models/project.js';
+import {users, posts, projects} from './data/index.js'; */
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
@@ -72,7 +73,7 @@ app.use('/auth', authRoutes); //??
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/saved', savedRoutes);
-//app.use('/projects', projectRoutes);
+//app.use('/project', projectRoutes);
 
 /* MONGOOSE SETUP */
 mongoose.set('strictQuery', false);
@@ -88,5 +89,6 @@ mongoose
     /* ADD DATA ONE TIME */
     // User.insertMany(users);
     // Post.insertMany(posts);
+    //Project.insertMany(projects);
   })
   .catch((error) => console.log(`${error} did not connect`));

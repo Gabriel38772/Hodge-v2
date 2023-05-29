@@ -4,9 +4,8 @@ import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
-/* CREATE 
-router.get("/:userId/projects/new", verifyToken, createProject)
-*/
+/* CREATE */
+router.post("/", verifyToken, createProject);
 
 /* READ */
 router.get("/", verifyToken, getFeedProjects);

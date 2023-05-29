@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+
 const userIds = [
   new mongoose.Types.ObjectId(),
   new mongoose.Types.ObjectId(),
@@ -141,6 +142,17 @@ export const users = [
     __v: 0,
   },
 ];
+
+export const projects = [
+  {
+    _id: new mongoose.Types.ObjectId(),
+    projectOwnerId: userIds[3],
+    title: 'Whatcha',
+    info: 'Doing',
+    category: 'Korea, CA',
+    picturePath: 'post2.jpeg',
+  }
+]
 
 export const posts = [
   {

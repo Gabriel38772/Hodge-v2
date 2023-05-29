@@ -1,22 +1,22 @@
 import mongoose from 'mongoose';
 
-const projectSchema = new mongoose.Schema(
+const projectSchema = mongoose.Schema(
   {
     projectOwnerId: {
       type: String,
-      required: true,
+      required: false,
     },
     title: {
       type: String,
-      required: true,
+      required: false,
     },
     info: {
       type: String,
-      required: true,
+      required: false,
     },
     category: {
       type: String,
-      required: true,
+      required: false,
     },
 
     picturePath: {
@@ -30,7 +30,6 @@ const projectSchema = new mongoose.Schema(
     members: [{
       userId: {
         type: String,
-        required: true
       }
     }]
   },
