@@ -7,7 +7,7 @@ import {
 	useTheme } from '@mui/material';
 import { EditOutlined } from '@mui/icons-material';
 import { Formik } from 'formik';
-import * as yup from 'yup'; //Form validation
+//import * as yup from 'yup'; //Form validation
 //import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Dropzone from 'react-dropzone'; //Låter användare "drop" en fil för att kunna ladda upp den på sidan
@@ -18,20 +18,22 @@ import {useState} from 'react';
 import {setProjects} from 'state';
 
 
-
+/*
 const projectSchema = yup.object().shape({
 	title: yup.string().required('required'),
 	info: yup.string().required(''),
 	category: yup.string().required('required'),
 	picture: yup.string()
 	});
+	*/
 
-const initialValuesCreateProject = {
+const initialValues = {
 	title: "",
 	info: "",
 	category: "",
 	picture: ""
 };
+
 
 const Form = () => {
 	const{ palette } = useTheme(); //Kopplar till temat
@@ -43,10 +45,14 @@ const Form = () => {
 	const token = useSelector((state) => state.token);
 	const [ setImage] = useState(null);
 
+	const loggedInUserId = useSelector((state) => state.user._id);
+
+
 
 
 	const projectCreated = async (values) => {
 		const formData = new FormData(); //Låter en skicka bild som del av formulärinfon
+		formData.append('projectOwnerId', loggedInUserId);
 		for (let value in values){
 			formData.append(value, values[value])
 		}
@@ -77,8 +83,7 @@ const Form = () => {
 
 	return(
 		<Formik onSubmit={handleFormSubmit}
-            initialValues= {initialValuesCreateProject}
-            validationSchema={projectSchema}
+            initialValues= {initialValues}
 		>
 
 		{({

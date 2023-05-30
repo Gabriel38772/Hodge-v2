@@ -2,7 +2,7 @@ import Project from '../models/project.js';
 
 
 export const createProject = async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   try {
     const project = new Project(req.body);
     await project.save();
