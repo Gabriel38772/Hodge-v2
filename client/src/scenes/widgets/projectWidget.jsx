@@ -1,3 +1,4 @@
+/*
 import {
 	ChatBubbleOutlineOutlined,
 	FavoriteBorderOutlined,
@@ -5,43 +6,51 @@ import {
 	ShareOutlined,
 	BookmarkBorder,
 	BookmarkOutlined,
-} from '@mui/icons-material';
-import {Box, Divider, IconButton, Typography, useTheme, Button, TextField} from '@mui/material';
+} from '@mui/icons-material'; */
+import {Box,  Typography /*useTheme*/ } from '@mui/material';
 import FlexBetween from 'components/FlexBetween';
 //import Friend from 'components/Friend';
 import WidgetWrapper from 'components/WidgetWrapper';
-import {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {setPost} from 'state';
-import axios from 'axios';
- 
+//import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+
 
 
 const ProjectWidget = ({
 						projectId,
-						projectOwnerId,
 						title,
 						info,
-						category,
-						picturePath
+						category
 					}) => {
-	//const [isComments, setIsComments] = useState(false);
-	//const [newcomment, setNewComment] = useState('');
-	//const [PostCategory, setPostCategory] = useState(false);
-	//const dispatch = useDispatch();
+
+	const dispatch = useDispatch();
 	const token = useSelector((state) => state.token);
-	const loggedInUserId = useSelector((state) => state.user._id);
-	//const isLiked = Boolean(likes[loggedInUserId]);
-	//const likeCount = Object.keys(likes).length;
- 
-	const {palette} = useTheme();
-	const main = palette.neutral.main;
-	const primary = palette.primary.main;
- 
-	//const [loadcomments, setLoadComments] = useState([]);
- 
+	const navigate = useNavigate();
+	const [project, setProject] = useState(null);
+
+	const getProject = async () => {
+    const response = await fetch(
+      `http://localhost:3001/project/${projectId}`,
+      {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`},
+      },
+    );
+    const data = await response.json();
+    dispatch(setProject({projects: data}));
+  };
+
+  
 	useEffect(() => {
-    axios.get(`http://localhost:3001/projects/${projectId}`, {
+    getProject();
+  }, []); 
+
+ 
+	/*
+	useEffect(() => {
+    axios.get(`http://localhost:3001/project/${projectId}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -51,12 +60,18 @@ const ProjectWidget = ({
       .catch(error => {
         console.error(error);
       });
-  }, [projectId, token]);
+  }, [projectId, token]); */
 
 	return (
 		<WidgetWrapper m='2rem 0'>
-      <FlexBetween mt='0.25rem'>
-    
+      <FlexBetween mt='0.25rem' onClick={() => navigate(`/projects/${projectId}`)} style={{
+              cursor: 'pointer',
+            }}>
+				<Typography>
+				<p>{title}</p>
+				<p>{info}</p>
+				<p>{category}</p>
+				</Typography>
       </FlexBetween>
       <Box mt='0.5rem'>
       </Box>

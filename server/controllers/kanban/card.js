@@ -1,4 +1,4 @@
-import Card from '../models/card.js';
+import Card from '../../models/kanban/card.js';
 //import { throwError } from '../utils/helpers.js'; //ta bort?
 
 export const createNewCard = async (req, res, next) => {

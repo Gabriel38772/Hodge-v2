@@ -12,18 +12,18 @@ import authRoutes from './routes/auth.js'; //Fil (auth) i mapp kallad route
 import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
 import savedRoutes from './routes/saved.js';
-//import projectRoutes from './routes/projects.js';
-
-/*project page
-import boardRoutes from './routes/board.js';
-import listRoutes from './routes/list.js';
-import cardRoutes from './routes/card.js'; */
+import projectRoutes from './routes/projects.js';
+//For Kanban board
+import boardRoutes from './routes/kanban/board.js';
+import listRoutes from './routes/kanban/list.js';
+import cardRoutes from './routes/kanban/card.js';
 
 
 import {register} from './controllers/auth.js';
 import {createPost} from './controllers/posts.js';
 import {createProject} from './controllers/projects.js'
 import {verifyToken} from './middleware/auth.js';
+import { ppid } from 'process';
 /*
 import User from './models/user.js';
 import Post from './models/post.js'; 
@@ -73,7 +73,11 @@ app.use('/auth', authRoutes); //??
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/saved', savedRoutes);
-//app.use('/project', projectRoutes);
+app.use('/projects', projectRoutes);
+//Till Kanban
+app.use('/board', boardRoutes);
+app.use('list', listRoutes);
+app.use('/card', cardRoutes);
 
 /* MONGOOSE SETUP */
 mongoose.set('strictQuery', false);

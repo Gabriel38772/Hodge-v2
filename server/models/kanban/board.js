@@ -5,9 +5,9 @@ const boardSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    createdBy: {
+    forProject: {
         type: Schema.Types.ObjectId,
-        ref: "user",
+        ref: "project",
         required: true,
     },
 });

@@ -10,17 +10,17 @@ const ProjectsWidget = ({userId, isProfile = false}) => {
 
 
   const getProjects = async () => {
-    const response = await fetch('http://localhost:3001/projects', {
+    const response = await fetch('http://localhost:3001/project', {
       method: 'GET',
       headers: {Authorization: `Bearer ${token}`},
     });
     const data = await response.json();
     dispatch(setProjects({projects: data}));
   };
-  /*
-  const getUserPosts = async () => {
+  
+  const getUserProjects = async () => {
     const response = await fetch(
-      `http://localhost:3001/posts/${userId}/posts`,
+      `http://localhost:3001/project/${userId}/projects`,
       {
         method: 'GET',
         headers: {Authorization: `Bearer ${token}`},
@@ -30,25 +30,20 @@ const ProjectsWidget = ({userId, isProfile = false}) => {
     const data = await response.json();
     dispatch(setProjects({projects: data}));
   };
-  */
-
-  /*
+  
   useEffect(() => {
     if (isProfile) {
-      getUserPosts();
+      getUserProjects();
     } else {
-      getPosts();
+      getProjects();
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  */
 
   return (
     <>
       {projects?.map(
         ({
           _id,
-          user,
 			    title,
 			    info,
 			    category,
@@ -58,7 +53,6 @@ const ProjectsWidget = ({userId, isProfile = false}) => {
           <ProjectWidget
             key={_id}
             projectId={_id}
-            projectOwnerId={user}
             title={title}
             info={info}
             category={category}

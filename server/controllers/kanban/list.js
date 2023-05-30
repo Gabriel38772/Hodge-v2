@@ -1,5 +1,5 @@
-import Card from '../models/card.js';
-import List from '../models/list.js';
+import Card from '../../models/kanban/card.js';
+import List from '../../models/kanban/list.js';
 
 //const { throwError } = require("../utils/helpers"); //ta bort? 
 

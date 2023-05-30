@@ -2,8 +2,9 @@ import {BrowserRouter, Navigate, Routes, Route} from 'react-router-dom';
 import HomePage from 'scenes/homePage';
 import LoginPage from 'scenes/loginPage';
 import ProfilePage from 'scenes/profilePage';
-import CreateProjectPage from 'scenes/createProjectPage';
-import ProjectPage from 'scenes/projectPage';
+import CreateProjectPage from 'scenes/createProject';
+import MyProjectsPage from 'scenes/myProjectsPage';
+import ProjectPage from 'scenes/projectPage/oldindex';
 import {useMemo} from 'react';
 import {useSelector} from 'react-redux';
 import {CssBaseline, ThemeProvider} from '@mui/material';
@@ -41,12 +42,17 @@ function App() {
             />
             <Route
               path='/projects/:userId'
-              element={isAuth ? <ProjectPage /> : <Navigate to='/' />}
+              element={isAuth ? <MyProjectsPage /> : <Navigate to='/' />}
             />
             <Route
               path='/projects/new/:userId'
               element={isAuth ? <CreateProjectPage /> : <Navigate to='/' />}
             />
+            <Route
+              path='/projects/:projectId'
+              element={isAuth ? <ProjectPage /> : <Navigate to='/' />}
+            />
+            
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

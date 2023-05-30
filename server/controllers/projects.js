@@ -1,5 +1,4 @@
 import Project from '../models/project.js';
-import User from '../models/user.js'
 
 
 export const createProject = async (req, res) => {
@@ -14,6 +13,16 @@ export const createProject = async (req, res) => {
     res.status(409).json({ message: err.message });
   }
 
+};
+
+export const getProject = async (req, res) => {
+  try {
+    const {projectId} = req.params;
+    const project = await Project.findById(projectId);
+    res.status(200).json(project);
+  } catch (err) {
+    res.status(404).json({message: err.message});
+  }
 };
 // let result = await projects.save();
 
