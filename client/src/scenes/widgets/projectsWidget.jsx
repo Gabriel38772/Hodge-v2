@@ -20,7 +20,7 @@ const ProjectsWidget = ({userId, isProfile = false}) => {
   
   const getUserProjects = async () => {
     const response = await fetch(
-      `http://localhost:3001/project/${userId}/projects`,
+      `http://localhost:3001/myprojects/${userId}`,
       {
         method: 'GET',
         headers: {Authorization: `Bearer ${token}`},

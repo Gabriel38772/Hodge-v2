@@ -1,19 +1,8 @@
-/*
-import {
-	ChatBubbleOutlineOutlined,
-	FavoriteBorderOutlined,
-	FavoriteOutlined,
-	ShareOutlined,
-	BookmarkBorder,
-	BookmarkOutlined,
-} from '@mui/icons-material'; */
-import {Box,  Typography /*useTheme*/ } from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import FlexBetween from 'components/FlexBetween';
-//import Friend from 'components/Friend';
 import WidgetWrapper from 'components/WidgetWrapper';
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-//import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
 
@@ -28,11 +17,11 @@ const ProjectWidget = ({
 	const dispatch = useDispatch();
 	const token = useSelector((state) => state.token);
 	const navigate = useNavigate();
-	const [project, setProject] = useState(null);
+	const [ setProject] = useState(null);
 
 	const getProject = async () => {
     const response = await fetch(
-      `http://localhost:3001/project/${projectId}`,
+      `http://localhost:3001/projects/${projectId}`,
       {
         method: 'GET',
         headers: {Authorization: `Bearer ${token}`},
@@ -45,7 +34,7 @@ const ProjectWidget = ({
   
 	useEffect(() => {
     getProject();
-  }, []); 
+  } ); 
 
  
 	/*
@@ -64,7 +53,8 @@ const ProjectWidget = ({
 
 	return (
 		<WidgetWrapper m='2rem 0'>
-      <FlexBetween mt='0.25rem' onClick={() => navigate(`/projects/${projectId}`)} style={{
+      <FlexBetween mt='0.25rem' onClick={() => navigate(`/projects/${projectId}`)} 
+      style={{
               cursor: 'pointer',
             }}>
 				<Typography>

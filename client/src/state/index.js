@@ -5,7 +5,8 @@ const initialState = {
   user: null,
   token: null,
   posts: [],
-  projects: []
+  projects: [],
+  columns: []
 };
 
 export const authSlice = createSlice({
@@ -62,10 +63,17 @@ export const authSlice = createSlice({
         return project;
       });
       state.project = updatedProjects
-    }
+    },
+    setColumns: (state, action) => {
+      state.columns = action.payload.columns.slice(0)
+        .reverse()
+        .map((element) => {
+          return element;
+        });
+    },
   },
 });
 
-export const {setMode, setLogin, setLogout, setFriends, setPosts, setPost, setProject, setProjects} =
+export const {setColumns, setMode, setLogin, setLogout, setFriends, setPosts, setPost, setProject, setProjects} =
   authSlice.actions;
 export default authSlice.reducer;

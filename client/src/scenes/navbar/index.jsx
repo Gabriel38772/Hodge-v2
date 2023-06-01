@@ -113,7 +113,7 @@ const Navbar = () => {
               <MenuItem value={fullName}>
                 <Typography>{fullName}</Typography>
               </MenuItem>
-              <MenuItem onClick={() => navigate(`/projects/${user._id}`)}>Projects</MenuItem>
+              <MenuItem onClick={() => navigate(`/myprojects/${user._id}`)}>Projects</MenuItem>
               <MenuItem onClick={() => navigate(`/saved/${user._id}`)}>Saved</MenuItem>
               <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
             </Select>
@@ -193,7 +193,7 @@ const Navbar = () => {
                 <MenuItem value={fullName}>
                   <Typography>{fullName}</Typography>
                 </MenuItem>
-                <MenuItem onClick={() => navigate(`/projects/${user._id}`)}>Projects</MenuItem>
+                <MenuItem onClick={() => navigate(`/myprojects/${user._id}`)}>Projects</MenuItem>
                 <MenuItem onClick={() => navigate(`/saved/${user._id}`)}>Saved</MenuItem>
                 <MenuItem onClick={() => dispatch(setLogout())}>
                   Log Out

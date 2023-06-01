@@ -6,16 +6,16 @@ const router = express.Router();
 
 /* READ */
 router.get("/", verifyToken, );
-router.get("/:boardId", verifyToken, );
+router.get("/:columnId", verifyToken, );
 
 
 /* UPDATE */
-router.put("/:boardId", verifyToken, );
+router.put("/:columnId", verifyToken, );
 
 /* CREATE */
 router.post("/", verifyToken, );
 
 /* DELETE */
-router.delete("/:boardId", verifyToken,);
+router.delete("/:columnId", verifyToken,);
 
 export default router;

@@ -1,80 +1,65 @@
+import {Box, useMediaQuery} from '@mui/material';
+import {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
 import Navbar from 'scenes/navbar';
-import { Box, Button, Typography, Grid, useMediaQuery, MenuItem, Select } from '@mui/material';
-import kanbanboard from '../../components/kanbanboard';
-import { useParams } from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import ProjectWidget from 'scenes/widgets/testWidget';
 import WidgetWrapper from 'components/WidgetWrapper';
 import FlexBetween from 'components/FlexBetween';
+import KanbanBoard from 'components/kanbanboard'
+import BoardWidget from 'scenes/widgets/kanban/boardWidget';
 
-const projectPage = () => {
+
+
+
+const ProjectPage = () => {
   const [project, setProject] = useState(null);
   const {projectId} = useParams();
-  //const token = useSelector((state) => state.token);
-  //const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
-
-  const handleProject = async () => {
-    const formData = new FormData();
-    formData.append('userId', _id);
-    formData.append('description', post);
-    if (image) {
-      formData.append('picture', image);
-      formData.append('picturePath', image.name);
-    }
-
-    const response = await fetch(`http://localhost:3001/posts`, {
-      method: 'POST',
-      headers: {Authorization: `Bearer ${token}`},
-      body: formData,
-    });
-    const posts = await response.json();
-    dispatch(setPosts({posts}));
-    setImage(null);
-    setPost('');
-  };
+  const token = useSelector((state) => state.token);
+  const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
 
   const getProject = async () => {
     const response = await fetch(`http://localhost:3001/projects/${projectId}`, {
-      method: 'GET'
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${token}` },
     });
     const data = await response.json();
     setProject(data);
-  };
+};
 
   useEffect(() => {
     getProject();
-  }, [])
+  }, [] );
+
+  if (!project) return null;
 
   return (
+    <>
     <WidgetWrapper>
       <FlexBetween>
-      <Box>
-      <Navbar />
-        <Typography>
-          detta är projekt: {projectId}
-        </Typography>
-      </Box>
+        <Box display={isNonMobileScreens ? 'flex' : 'block'}>
+        <Navbar />
+        </Box>
+        
 
-    <Button
-    disabled={!post}
-    onClick={handlePost}
-    sx={{
-      color: palette.background.alt,
-      backgroundColor: palette.primary.main,
-      borderRadius: '3rem',
-    }}
-    >
-    POST
-    </Button>
+        
+        
       </FlexBetween>
-
     </WidgetWrapper>
+  
+   
+    <Box>
+        <ProjectWidget projectId={projectId} />
+        <BoardWidget projectId={projectId} />
+        <KanbanBoard />
+    </Box>
+  
+    </>
+    
     
   );
 
 };
   
   
- 
-
-
-
-export default projectPage;
+export default ProjectPage;

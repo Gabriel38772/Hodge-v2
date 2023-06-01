@@ -13,8 +13,8 @@ import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
 import savedRoutes from './routes/saved.js';
 import projectRoutes from './routes/projects.js';
-//For Kanban board
-import boardRoutes from './routes/kanban/board.js';
+//For Kanban
+import columnRoutes from './routes/kanban/column.js';
 import listRoutes from './routes/kanban/list.js';
 import cardRoutes from './routes/kanban/card.js';
 
@@ -75,7 +75,7 @@ app.use('/posts', postRoutes);
 app.use('/saved', savedRoutes);
 app.use('/projects', projectRoutes);
 //Till Kanban
-app.use('/board', boardRoutes);
+app.use('/column', columnRoutes);
 app.use('list', listRoutes);
 app.use('/card', cardRoutes);
 

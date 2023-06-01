@@ -1,62 +1,57 @@
-import React from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import React, { useState } from 'react';
 
 const initialData = {
-  tasks: {
-    'task-1': { id: 'task-1', content: 'Take out the garbage' },
-    'task-2': { id: 'task-2', content: 'Watch TV' },
-  },
-  columns: {
-    'column-1': {
-      id: 'column-1',
-      title: 'To do',
-      taskIds: ['task-1', 'task-2'],
-    },
-  },
-  columnOrder: ['column-1'],
+  tasks: [
+    { id: 'task-1', content: 'Take out the garbage' },
+    { id: 'task-2', content: 'Watch TV' }
+  ]
 };
 
-class KanbanBoard extends React.Component {
-  state = initialData;
+const KanbanBoard = () => {
+  const [tasks, setTasks] = useState(initialData.tasks);
 
-  onDragEnd = result => {
-    // TODO: reordering logic
+  const handleDragStart = (e, index) => {
+    e.dataTransfer.setData('taskIndex', index);
   };
 
-  render() {
-    return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        {this.state.columnOrder.map(columnId => {
-          const column = this.state.columns[columnId];
-          const tasks = column.taskIds.map(taskId => this.state.tasks[taskId]);
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
 
-          return (
-            <Droppable droppableId={column.id}>
-              {(provided) => (
-                <div ref={provided.innerRef} {...provided.droppableProps}>
-                  <h2>{column.title}</h2>
-                  {tasks.map((task, index) => (
-                    <Draggable key={task.id} draggableId={task.id} index={index}>
-                      {(provided) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                        >
-                          {task.content}
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          );
-        })}
-      </DragDropContext>
-    );
-  }
-}
+  const handleDrop = (e, index) => {
+    const dragIndex = e.dataTransfer.getData('taskIndex');
+    const dragTask = tasks[dragIndex];
+    const remainingTasks = tasks.filter((task, i) => i !== parseInt(dragIndex));
+    const updatedTasks = [
+      ...remainingTasks.slice(0, index),
+      dragTask,
+      ...remainingTasks.slice(index)
+    ];
+    setTasks(updatedTasks);
+  };
+
+  return (
+    <div>
+      {tasks.map((task, index) => (
+        <div
+          key={task.id}
+          draggable
+          onDragStart={(e) => handleDragStart(e, index)}
+          onDragOver={handleDragOver}
+          onDrop={(e) => handleDrop(e, index)}
+          style={{
+            border: '1px solid black',
+            padding: '10px',
+            margin: '10px',
+            userSelect: 'none',
+            cursor: 'move'
+          }}
+        >
+          {task.content}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default KanbanBoard;

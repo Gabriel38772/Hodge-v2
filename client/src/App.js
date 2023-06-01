@@ -4,7 +4,7 @@ import LoginPage from 'scenes/loginPage';
 import ProfilePage from 'scenes/profilePage';
 import CreateProjectPage from 'scenes/createProject';
 import MyProjectsPage from 'scenes/myProjectsPage';
-import ProjectPage from 'scenes/projectPage/oldindex';
+import ProjectPage from 'scenes/projectPage';
 import {useMemo} from 'react';
 import {useSelector} from 'react-redux';
 import {CssBaseline, ThemeProvider} from '@mui/material';
@@ -41,11 +41,11 @@ function App() {
               element={isAuth ? <HomePage /> : <Navigate to='/' />}
             />
             <Route
-              path='/projects/:userId'
+              path='/myprojects/:userId'
               element={isAuth ? <MyProjectsPage /> : <Navigate to='/' />}
             />
             <Route
-              path='/projects/new/:userId'
+              path='/myprojects/new/:userId'
               element={isAuth ? <CreateProjectPage /> : <Navigate to='/' />}
             />
             <Route

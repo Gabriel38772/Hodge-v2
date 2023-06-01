@@ -70,7 +70,7 @@ const Form = () => {
 			setProject('');
 
 		if (projectCreated) {
-			navigate(`/projects/${user._id}`);
+			navigate(`/myprojects/${user._id}`);
 		
 
 		}
@@ -184,7 +184,7 @@ const Form = () => {
 						{"Skapa projekt"}
 					</Button>
 
-					<Button onClick={()=>navigate(`/projects/${user._id}`)}>
+					<Button onClick={()=>navigate(`/myprojects/${user._id}`)}>
 						skit samma
 					</Button>
 

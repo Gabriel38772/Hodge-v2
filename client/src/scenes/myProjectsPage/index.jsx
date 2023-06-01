@@ -3,15 +3,16 @@ import {useParams} from 'react-router-dom';
 import Navbar from 'scenes/navbar';
 import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
-import { useState} from 'react';
+import {useState} from 'react';
 import ProjectsWidget from 'scenes/widgets/projectsWidget';
 
 
 
 
-const ProjectPage = () => {
-  const [myProjects, setMyProjects] = useState([]);
+const MyProjectsPage = () => {
+  //const [myProjects, setMyProjects] = useState([]);
   const {projectId} = useParams();
+
   
 
   const navigate = useNavigate();
@@ -20,22 +21,25 @@ const ProjectPage = () => {
   const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+  
+/*
   const getMyProjects = () => {
     const myProjects = window.localStorage.getItem('myProjects');
     const data = JSON.parse(myProjects);
     setMyProjects(data);
     console.log('19-->', data);
-  };
+  }; 
 
-  const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-  };
+  
 
 
 	const filteredProjects = myProjects;
   
   
-  /*selectedCategory === 'all'
+  selectedCategory === 'all'
     ? myProjects
     : myProjects.filter((project) => project.owner === userId); */
     
@@ -66,7 +70,7 @@ const ProjectPage = () => {
           </Grid>
           <Box>
          
-            <ProjectsWidget projectId={projectId}/>
+            <ProjectsWidget projectId={projectId} />
             
           </Box>
             
@@ -77,7 +81,7 @@ const ProjectPage = () => {
 
 
       
-         <Button onClick={()=>navigate(`/projects/new/${user._id}`)}>
+         <Button onClick={()=>navigate(`/myprojects/new/${user._id}`)}>
 				Skapa projekt
 			</Button>
       
@@ -88,4 +92,4 @@ const ProjectPage = () => {
    );
 };
 
-export default ProjectPage;
+export default MyProjectsPage;
