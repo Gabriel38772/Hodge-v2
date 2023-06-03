@@ -37,19 +37,7 @@ const ProjectWidget = ({
   } ); 
 
  
-	/*
-	useEffect(() => {
-    axios.get(`http://localhost:3001/project/${projectId}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      
-      .catch(error => {
-        console.error(error);
-      });
-  }, [projectId, token]); */
+	
 
 	return (
 		<WidgetWrapper m='2rem 0'>

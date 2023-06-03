@@ -15,55 +15,49 @@ import FlexBetween from '../../components/FlexBetween';
 import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 import {useState} from 'react';
-import {setProjects} from 'state';
-
+import {setTasks} from 'state';
 
 
 
 const initialValues = {
 	title: "",
-	info: "",
-	category: "",
-	picture: ""
+  //Hade varit najs med dropdown
 };
 
 
-const Form = () => {
+const Form = ({projectId}) => {
 	const{ palette } = useTheme(); //Kopplar till temat
 	const dispatch = useDispatch();
 	const navigate = useNavigate(); //Låter en navigera mellan sidor.
 	const isNonMobile = useMediaQuery("(min-width: 600px)");
-	const user = useSelector((state) => state.user);
-	const [setProject] = useState('');
+	const [setTask] = useState('');
 	const token = useSelector((state) => state.token);
-	const [ setImage] = useState(null);
-
-	const loggedInUserId = useSelector((state) => state.user._id);
 
 
 
 
-	const projectCreated = async (values) => {
+
+
+	const taskCreated = async (values) => {
 		const formData = new FormData(); //Låter en skicka bild som del av formulärinfon
-		formData.append('projectOwnerId', loggedInUserId);
+		formData.append('forProject', projectId);
 		for (let value in values){
 			formData.append(value, values[value])
 		}
 		formData.append('picturePath', values.picture.name);
 		
-		const projectCreatedResponse = await fetch(
-			`http://localhost:3001/project`, { //glöm inte ändra!!
+		const taskCreatedResponse = await fetch(
+			`http://localhost:3001/task`, { //glöm inte ändra!!
 			method: 'POST',
       headers: {Authorization: `Bearer ${token}`},
       body: formData,
     });
-		const projects = await projectCreatedResponse.json();
-			dispatch(setProjects({projects}));
-			setImage(null);
-			setProject('');
+		const tasks = await taskCreatedResponse.json();
+			dispatch(setTasks({tasks}));
+			setTask('');
 
-		if (projectCreated) {
-			navigate(`/myprojects/${user._id}`);
+		if (taskCreated) {
+			navigate(`/project/${projectId}`);
 		
 
 		}
@@ -71,7 +65,7 @@ const Form = () => {
 	};
 
 	const handleFormSubmit = async(values, onSubmitProps) => {
-		await projectCreated(values, onSubmitProps);
+		await taskCreated(values, onSubmitProps);
 	};
 
 	return(
@@ -99,7 +93,7 @@ const Form = () => {
 					> 
 					<>
 						<TextField
-							label="Projektnamn"
+							label="Title"
 							onBlur={handleBlur}
 							onChange={handleChange}
 							value={values.title}
@@ -108,58 +102,6 @@ const Form = () => {
 							helperText={touched.title && errors.title}
 							sx={{ gridColumn: "span 2"}}/>
 
-						<TextField
-							label="Om projektet!"
-							onBlur={handleBlur}
-							onChange={handleChange}
-							value={values.info}
-							name="info"
-							error={Boolean(touched.info) && Boolean(errors.info)} //Om fältet är tome efter blivit rört eller där kommer error. 
-							helperText={touched.info && errors.info}
-							sx={{ gridColumn: "span 2"}}/>
-
-						<TextField
-							label="Projektkategori"
-							onBlur={handleBlur}
-							onChange={handleChange}
-							value={values.category}
-							name="category"
-							error={Boolean(touched.category) && Boolean(errors.category)} //Om fältet är tome efter blivit rört eller där kommer error. 
-							helperText={touched.category && errors.category}
-							sx={{ gridColumn: "span 2"}}/>
-
-						<Box
-							gridColumn='span 4'
-							border={`1px solid ${palette.neutral.medium}`}
-							borderRadius='5px'
-							p='1rem'
-						>
-							<Dropzone
-								acceptedFiles='.jpg,.jpeg,.png'
-								multiple={false} //Endast en bild kan läggas till
-								onDrop={acceptedFiles =>
-									setFieldValue('picture', acceptedFiles[0])}
-							>
-								{({getRootProps, getInputProps}) => (
-									<Box
-										{...getRootProps()}
-										border={`2px dashed ${palette.primary.main}`}
-										p='1rem'
-										sx={{':&hover': {cursor: 'pointer'}}}
-									>
-										< input {...getInputProps()} />
-										{!values.picture ? ( //Om det inte finns en picture så ska följande text stå
-											<p>Add Picture Here</p>
-										) : (
-											<FlexBetween>
-												<Typography> {values.picture.name} </Typography>
-												<EditOutlined />
-											</FlexBetween>
-										)}
-
-									</Box> )}
-							</Dropzone>
-						</Box>		
 					</>
 				</Box>
 				{/*Knappar*/}
@@ -174,10 +116,10 @@ const Form = () => {
 							color: palette.background.main,
 							"&:hover": { color: palette.primary.main }}}
 					>
-						{"Skapa projekt"}
+						{"Lägg till task"}
 					</Button>
 
-					<Button onClick={()=>navigate(`/myprojects/${user._id}`)}>
+					<Button onClick={()=>navigate(`/project/${projectId}`)}>
 						skit samma
 					</Button>
 

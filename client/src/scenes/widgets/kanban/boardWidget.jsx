@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import ColumnWidget from './columnWidget';
+import ColumnWidget from './columnsWidget';
 
 const BoardWidget = ({projectId}) => {
   const [project, setProject] = useState(null);
@@ -74,18 +74,6 @@ const BoardWidget = ({projectId}) => {
 
 
   const ProfileId = window.location.pathname.split('/').pop();
-
-  // const handleLinkedInEdit = () =>{
-  //   setInputBox(!InputBox)
-  // }
-
-  const handleInputChange = (event) => {
-    const {name, value} = event.target;
-    setProject((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
 
   console.log('103', projectId === ProfileId, ProfileId, _id);
   return (

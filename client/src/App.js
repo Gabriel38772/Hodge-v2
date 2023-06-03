@@ -11,6 +11,7 @@ import {CssBaseline, ThemeProvider} from '@mui/material';
 import {createTheme} from '@mui/material/styles';
 import {themeSettings} from './theme';
 import SavedPage from 'scenes/savedPage';
+import AddTask from 'scenes/addTask';
 
 function App() {
   const mode = useSelector((state) => state.mode); //Tar state info från state/index.js
@@ -51,6 +52,10 @@ function App() {
             <Route
               path='/projects/:projectId'
               element={isAuth ? <ProjectPage /> : <Navigate to='/' />}
+            />
+            <Route
+              path='/task/new/:projectId'
+              element={isAuth ? <AddTask /> : <Navigate to='/' />}
             />
             
           </Routes>

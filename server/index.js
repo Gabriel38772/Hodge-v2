@@ -16,7 +16,7 @@ import projectRoutes from './routes/projects.js';
 //For Kanban
 import columnRoutes from './routes/kanban/column.js';
 import listRoutes from './routes/kanban/list.js';
-import cardRoutes from './routes/kanban/card.js';
+import taskRoutes from './routes/kanban/task.js';
 
 
 import {register} from './controllers/auth.js';
@@ -77,7 +77,7 @@ app.use('/projects', projectRoutes);
 //Till Kanban
 app.use('/column', columnRoutes);
 app.use('list', listRoutes);
-app.use('/card', cardRoutes);
+app.use('/task ', taskRoutes);
 
 /* MONGOOSE SETUP */
 mongoose.set('strictQuery', false);
