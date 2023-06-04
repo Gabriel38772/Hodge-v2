@@ -16,6 +16,8 @@ import {setLogin} from '../../state';
 import Dropzone from 'react-dropzone';
 import FlexBetween from '../../components/FlexBetween';
 
+// Defining validation schemas for the registration and login forms
+
 const registerSchema = yup.object().shape({
   firstName: yup.string().required('required'),
   lastName: yup.string().required('required'),
@@ -31,6 +33,9 @@ const loginSchema = yup.object().shape({
   password: yup.string().required('required'),
 });
 
+// Defining initial values for the registration and login forms
+
+
 const initialValuesRegister = {
   firstName: '',
   lastName: '',
@@ -45,6 +50,9 @@ const initialValuesLogin = {
   email: '',
   password: '',
 };
+
+// Defining the form component
+
 
 const Form = () => {
   const [pageType, setPageType] = useState('login');
@@ -96,6 +104,8 @@ const Form = () => {
       navigate('/home');
     }
   };
+    // Handling form submission for both login and registration
+
 
   const handleFormSubmit = async (values, onSubmitProps) => {
     if (isLogin) await login(values, onSubmitProps);
@@ -201,7 +211,7 @@ const Form = () => {
                             <EditOutlined />
                           </FlexBetween>
                         )}
-                      < /Box>
+                      </Box>
                     )}
                   </Dropzone>
                   {/* dropzone end */}

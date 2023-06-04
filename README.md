@@ -4,6 +4,8 @@
 # För att navigera dit via terminalen skriver man först 'cd server' och sedan 'npm install' öppna sedan ny terminal och skriv 'cd client' skriv sedan 'npm install' efter det kan man köra applikationen genom att skriva 'npm run start'
 
 
+# För att kunna logga in på applikationen behöver man skapa en .env fil i server mappen. Där kan man koppla upp sig mot en databas, exempelvis mongodb. 
+
 
 
 ## Applikationen är skapad med:

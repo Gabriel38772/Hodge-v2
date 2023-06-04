@@ -1,3 +1,6 @@
+
+// Importing components and hooks
+
 import {Box, useMediaQuery} from '@mui/material';
 import {useSelector} from 'react-redux';
 import Navbar from 'scenes/navbar';
@@ -7,9 +10,15 @@ import PostsWidget from 'scenes/widgets/PostsWidget';
 import AdvertWidget from 'scenes/widgets/AdvertWidget';
 import FriendListWidget from 'scenes/widgets/FriendListWidget';
 
+// HomePage component definition
+
+
 const HomePage = () => {
+    // Use media query to check if the screen is non-mobile
   const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
   const {_id, picturePath} = useSelector((state) => state.user);
+
+  // Render HomePage component with various widgets
 
   return (
     <Box>
@@ -42,5 +51,8 @@ const HomePage = () => {
     </Box>
   );
 };
+
+// Export HomePage component
+
 
 export default HomePage;

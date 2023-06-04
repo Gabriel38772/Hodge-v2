@@ -1,6 +1,7 @@
 import Post from '../models/Post.js';
 
 /* CREATE */
+// Find all posts with the provided user ID
 
 export const getUserSaved = async (req, res) => {
   try {
