@@ -1,7 +1,5 @@
-/*  Importing dependencies from MUI */ 
-
 import {Box} from '@mui/material';
-import {styled} from '@mui/material';
+import {styled} from '@mui/system';
 
 /* Creating flexbetween componenet */ 
 

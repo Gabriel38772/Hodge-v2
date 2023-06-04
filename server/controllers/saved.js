@@ -1,4 +1,4 @@
-import Post from '../models/Post.js';
+import Post from '../models/post.js';
 
 /* CREATE */
 // Find all posts with the provided user ID

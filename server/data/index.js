@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 
-// Generate an array of unique user IDs
 
 const userIds = [
   new mongoose.Types.ObjectId(),
@@ -146,6 +145,28 @@ export const users = [
     __v: 0,
   },
 ];
+
+export const projects = [
+  {
+    _id: new mongoose.Types.ObjectId(),
+    projectOwnerId: userIds[3],
+    title: 'Whatcha',
+    info: 'Doing',
+    category: 'Korea, CA',
+    picturePath: 'post2.jpeg',
+  }
+]
+
+export const tasks = [
+  {
+    _id: new mongoose.Types.ObjectId(),
+    title: 'Whatcha',
+    description: 'Doing',
+    projectId: 'Korea, CA',
+    columnId: 'post2.jpeg',
+  }
+]
+
 
 export const posts = [
   {
