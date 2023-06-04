@@ -6,7 +6,7 @@
 
 # För att kunna logga in på applikationen behöver man skapa en .env fil i server mappen. Där kan man koppla upp sig mot en databas, exempelvis mongodb. 
 
-
+# Länk till projektets Git-repository: https://github.com/Gabriel38772/Hodge-v2
 
 ## Applikationen är skapad med:
 # Mongodb
