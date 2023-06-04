@@ -2,7 +2,7 @@ import Task from '../../models/kanban/task.js';
 
 
 export const createTask = async (req, res) => {
-  //console.log(req.body);
+  console.log(req.body);
   try {
     const task = new Task(req.body);
     await task.save();

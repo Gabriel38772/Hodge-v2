@@ -154,6 +154,17 @@ export const projects = [
   }
 ]
 
+export const tasks = [
+  {
+    _id: new mongoose.Types.ObjectId(),
+    title: 'Whatcha',
+    description: 'Doing',
+    projectId: 'Korea, CA',
+    columnId: 'post2.jpeg',
+  }
+]
+
+
 export const posts = [
   {
     _id: new mongoose.Types.ObjectId(),

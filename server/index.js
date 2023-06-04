@@ -21,14 +21,17 @@ import taskRoutes from './routes/kanban/task.js';
 
 import {register} from './controllers/auth.js';
 import {createPost} from './controllers/posts.js';
-import {createProject} from './controllers/projects.js'
+import {createProject} from './controllers/projects.js';
+import {createTask} from './controllers/kanban/tasks.js';
 import {verifyToken} from './middleware/auth.js';
 import { ppid } from 'process';
 /*
 import User from './models/user.js';
 import Post from './models/post.js'; 
 import Project from './models/project.js';
-import {users, posts, projects} from './data/index.js'; */
+import Task from './models/kanban/task.js';
+import {tasks, users, posts, projects} from './data/index.js';
+ */
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
@@ -67,6 +70,8 @@ const upload = multer({storage});
 app.post('/auth/register', upload.single('picture'), register);
 app.post('/posts', verifyToken, upload.single('picture'), createPost);
 app.post('/project', verifyToken, upload.single('picture'), createProject);
+app.post('/task', verifyToken, createTask);
+
 
 /* ROUTES */
 app.use('/auth', authRoutes); //??
@@ -77,7 +82,7 @@ app.use('/projects', projectRoutes);
 //Till Kanban
 app.use('/column', columnRoutes);
 app.use('list', listRoutes);
-app.use('/task ', taskRoutes);
+app.use('/task', taskRoutes);
 
 /* MONGOOSE SETUP */
 mongoose.set('strictQuery', false);
@@ -94,5 +99,6 @@ mongoose
     // User.insertMany(users);
     // Post.insertMany(posts);
     //Project.insertMany(projects);
+    //Task.insertMany(tasks);
   })
   .catch((error) => console.log(`${error} did not connect`));
